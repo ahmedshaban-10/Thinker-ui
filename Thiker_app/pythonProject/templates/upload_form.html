@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Processor Chatbot</title>
+    <style>
+        /* Add any additional styling as needed */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #chat-container {
+            max-width: 600px;
+            margin: auto;
+        }
+        #chat-messages {
+            border: 1px solid #ccc;
+            padding: 10px;
+            min-height: 200px;
+            overflow-y: scroll;
+        }
+        #user-input {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>PDF Processor Chatbot</h1>
+
+    <div id="chat-container">
+        <div id="chat-messages">
+            <!-- Chat messages will be displayed here -->
+        </div>
+        <div id="user-input">
+            <input type="text" id="user-message" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <form action="{{ url_for('thinker.upload_file') }}" method="post" enctype="multipart/form-data">
+        <label for="file">Choose PDF:</label>
+        <input type="file" name="file" id="file" accept=".pdf" style="display: none;" onchange="displayFileName()">
+        <button type="button" onclick="document.getElementById('file').click()">Upload PDF</button>
+        <span id="file-name"></span>
+        <button type="submit" onclick="letPdfThink()">Let PDF Think</button>
+    </form>
+
+    <script>
+        function sendMessage() {
+            // Add your logic to handle the user's message and update the chat messages
+            var userMessage = document.getElementById('user-message').value;
+            var chatMessages = document.getElementById('chat-messages');
+            var newMessage = document.createElement('div');
+            newMessage.textContent = 'User: ' + userMessage;
+            chatMessages.appendChild(newMessage);
+            // Add any additional logic or make AJAX requests to the server as needed
+        }
+
+        function letPdfThink() {
+            // Add your logic to handle "Let PDF Think" button click
+            // This can include any additional processing or AJAX requests
+            alert('Let PDF Think clicked!');
+        }
+
+        function displayFileName() {
+            // Display selected file name next to the "Upload PDF" button
+            var fileName = document.getElementById('file').files[0].name;
+            document.getElementById('file-name').textContent = 'File selected: ' + fileName;
+        }
+    </script>
+
+</body>
+<!--
+#040f13
+#071e26
+
+-->
+</html>
